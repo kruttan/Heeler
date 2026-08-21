@@ -7,7 +7,7 @@ PROJECT := Heeler.xcodeproj
 SCHEME  := Heeler
 ARCHIVE := build/Heeler.xcarchive
 DERIVED := build/DerivedData
-APP_ID  := dev.bybee.heeler
+APP_ID  := io.ruttan.heeler
 SIM     ?= iPhone 17
 IOS_WATCH_DEBOUNCE ?= 1s
 

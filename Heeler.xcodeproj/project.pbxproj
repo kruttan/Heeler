@@ -1137,15 +1137,15 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					081A3B29EFF2C7B2FCAA3248 = {
-						DevelopmentTeam = 9VM4RM39R3;
+						DevelopmentTeam = Z23RV8F73Q;
 						ProvisioningStyle = Automatic;
 					};
 					9806EA6C63028F1217417282 = {
-						DevelopmentTeam = 9VM4RM39R3;
+						DevelopmentTeam = Z23RV8F73Q;
 						ProvisioningStyle = Automatic;
 					};
 					DFFB82C74B73FA5CBCE6D5D2 = {
-						DevelopmentTeam = 9VM4RM39R3;
+						DevelopmentTeam = Z23RV8F73Q;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1519,7 +1519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 9VM4RM39R3;
+				DEVELOPMENT_TEAM = Z23RV8F73Q;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1561,7 +1561,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.bybee.heeler;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ruttan.heeler;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1579,7 +1579,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.bybee.heeler.NotificationService;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ruttan.heeler.NotificationService;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1621,7 +1621,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 9VM4RM39R3;
+				DEVELOPMENT_TEAM = Z23RV8F73Q;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1661,7 +1661,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.bybee.heeler.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ruttan.heeler.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heeler.app/Heeler";
@@ -1678,7 +1678,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.bybee.heeler.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ruttan.heeler.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heeler.app/Heeler";
@@ -1704,7 +1704,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.bybee.heeler;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ruttan.heeler;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1722,7 +1722,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.bybee.heeler.NotificationService;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ruttan.heeler.NotificationService;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
