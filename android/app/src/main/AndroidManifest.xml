@@ -7,12 +7,18 @@
 
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
+    <!-- Backup is poison here: the encrypted records under files/heeler-secure
+         are useless without their Android Keystore key, which never leaves the
+         device. A restore used to plant undecryptable ciphertext that wedged
+         every write (device key replace, adding a Host). Nothing this app
+         stores is meaningful off-device: identities re-pair instead. -->
     <application
         android:name=".HeelerApplication"
         android:label="Heeler"
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/Theme.Heeler"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:allowBackup="false">
 
         <activity
             android:name=".MainActivity"

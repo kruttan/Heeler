@@ -99,7 +99,7 @@ class AndroidKeystoreRecordStore(context: Context, private val service: String) 
     @Synchronized
     override fun write(account: String, value: ByteArray) {
         requireAccount(account)
-        val currentAccounts = readIndex()
+        val currentAccounts = usableIndexForMutation()
         writeEncrypted(account, value)
         if (currentAccounts.add(account)) writeIndex(currentAccounts)
     }
@@ -107,7 +107,7 @@ class AndroidKeystoreRecordStore(context: Context, private val service: String) 
     @Synchronized
     override fun remove(account: String) {
         requireAccount(account)
-        val currentAccounts = readIndex()
+        val currentAccounts = usableIndexForMutation()
         val file = fileFor(account)
         if (file.exists() && !file.delete()) {
             throw EncryptedRecordStoreException.Unavailable(IOException("Cannot remove encrypted record"))
@@ -117,6 +117,38 @@ class AndroidKeystoreRecordStore(context: Context, private val service: String) 
 
     @Synchronized
     override fun accounts(): Set<String> = readIndex()
+
+    /**
+     * The index for a mutation, resetting the store when the index cannot be
+     * decrypted.
+     *
+     * An undecryptable index means this install's Keystore key is not the one
+     * that sealed these files — a backup restored onto a device whose Keystore
+     * never had the key, or a vendor Keystore loss. Every sibling record was
+     * sealed by that same key, so nothing here is recoverable, and refusing to
+     * write turned that dead state permanent: the explicit recovery flows
+     * (Replace Device Key, re-adding a Host) are themselves writes and were
+     * wedged behind the corpse. Reads stay loud — [read] still throws Corrupt
+     * so the UI can say the old identity is gone — but a mutation arriving
+     * here IS the user's recovery action, and it gets a clean store.
+     */
+    private fun usableIndexForMutation(): LinkedHashSet<String> = try {
+        readIndex()
+    } catch (_: EncryptedRecordStoreException.Corrupt) {
+        resetStore()
+        linkedSetOf()
+    }
+
+    private fun resetStore() {
+        val leftovers = directory.listFiles() ?: return
+        for (file in leftovers) {
+            if (!file.delete()) {
+                throw EncryptedRecordStoreException.Unavailable(
+                    IOException("Cannot reset undecryptable secure storage"),
+                )
+            }
+        }
+    }
 
     private fun readIndex(): LinkedHashSet<String> {
         val raw = readEncrypted(INDEX_ACCOUNT) ?: return linkedSetOf()

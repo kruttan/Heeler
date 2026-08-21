@@ -9,6 +9,15 @@ Entries reference the issue that motivated them.
 
 ### Fixed
 
+- Android: a device whose encrypted storage was restored from backup (or
+  whose Keystore lost its key) could never recover — every write hit the
+  undecryptable record index first, so Replace Device Key and adding a Host
+  both failed, and the old error blamed "storage". Backup is now disabled
+  (the ciphertext is useless without the Keystore key, which never leaves
+  the device), mutations reset an undecryptable store instead of wedging
+  behind it — reads stay loud so the corrupt-key recovery flow still
+  appears — and save failures now name their actual reason.
+
 - Opening an Agent no longer dies with `exec: herdr: not found` (exit 127) on a
   Host that installed herdr via Homebrew or linuxbrew. The API socket never
   needed `herdr` on `PATH`, so the Console could already list Agents; Attach

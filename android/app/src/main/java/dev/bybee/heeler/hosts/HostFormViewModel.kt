@@ -151,10 +151,15 @@ class HostFormViewModel(
                     password = "",
                     savedHost = host,
                 )
-            } catch (_: Throwable) {
+            } catch (error: Throwable) {
+                // Name the actual failure: "check storage" blamed the disk
+                // for every error, including Keystore ones, and sent people
+                // hunting free space for a crypto problem.
+                val reason = error.message?.takeIf { it.isNotBlank() }
+                    ?: error.javaClass.simpleName
                 _state.value = _state.value.copy(
                     saving = false,
-                    saveError = "The Host could not be saved. Check storage and try again.",
+                    saveError = "The Host could not be saved: $reason",
                 )
             } finally {
                 suppliedPassword?.fill('\u0000')
